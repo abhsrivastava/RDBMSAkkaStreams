@@ -17,7 +17,7 @@ object MySQLStream extends App {
       }
    }
    val db = Database.forConfig("mysql")
-   val query = sql"select id from respondent".as[Long]
+   val query = sql"select id from foo".as[Long]
    val publisher = db.stream(query.withStatementParameters(statementInit = enableJdbcStreaming))
    val source = Source.fromPublisher[Long](publisher)
    val sink = Sink.foreach[Long]{x => println(x)}
